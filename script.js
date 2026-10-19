@@ -136,9 +136,12 @@
         Page:d.page||"",Submission_id:d.id||"",Submitted:when.toISOString()+" ("+when.toLocaleString()+")",
         Note:"Tab handles this automatically; this copy is so you never miss one."};
       if(d.email) body._replyto=d.email;
-      var x=new XMLHttpRequest(); x.open("POST","https://formsubmit.co/ajax/"+NOTIFY_TO); x.timeout=20000;
-      x.setRequestHeader("Content-Type","application/json"); x.setRequestHeader("Accept","application/json");
-      x.onerror=x.ontimeout=function(){}; x.send(JSON.stringify(body));
+      var url="https://formsubmit.co/ajax/"+NOTIFY_TO, json=JSON.stringify(body), hdr={"Content-Type":"application/json","Accept":"application/json"};
+      // keepalive lets the request finish even if the visitor closes the page; the service can take 30-60 s when busy
+      if(window.fetch){ fetch(url,{method:"POST",headers:hdr,body:json,keepalive:true}).catch(function(){}); }
+      else{ var x=new XMLHttpRequest(); x.open("POST",url); x.timeout=90000;
+        x.setRequestHeader("Content-Type","application/json"); x.setRequestHeader("Accept","application/json");
+        x.onerror=x.ontimeout=function(){}; x.send(json); }
     }catch(_){}
   }
   function fail(m){btn.disabled=false;btn.textContent=S.submit;showErr(m);}
