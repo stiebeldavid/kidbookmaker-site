@@ -18,7 +18,7 @@
 <meta name="theme-color" content="#fbf4ea">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="preload" href="/fonts/fraunces.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="/styles.css">
+<link rel="stylesheet" href="/styles.css?v=phone1">
 </head>
 <body>
 <a class="skip" href="#start" data-open>Empieza tu libro</a>
@@ -193,9 +193,14 @@
           <label for="author_name">Nombre del autor <span class="hint">opcional</span></label>
           <input id="author_name" name="author_name" type="text" autocomplete="off" maxlength="80" placeholder="Va en la portada, p. ej. Lucía, 7 años">
         </div>
-        <div class="field last">
+        <div class="field">
           <label for="email">Tu correo electrónico</label>
           <input id="email" name="email" type="email" autocomplete="email" inputmode="email" required placeholder="tu@ejemplo.com">
+        </div>
+        <div class="field last">
+          <label for="phone">Teléfono <span class="hint">opcional</span></label>
+          <input id="phone" name="phone" type="tel" autocomplete="tel" inputmode="tel" maxlength="30" placeholder="(555) 123-4567" aria-describedby="phone-help">
+          <p class="micro" id="phone-help">Solo para poder contactarte si nuestro correo llega a spam. Nunca lo compartiremos.</p>
         </div>
         <div class="hp" aria-hidden="true"><label>Website <input name="website" tabindex="-1" autocomplete="off"></label></div>
       </div>
@@ -223,6 +228,7 @@ window.KBM_STRINGS={
   need_story:"Cuéntanos la historia: escribe una frase, grábala o súbela.",
   need_email:"Añade un correo para poder enviarte la vista previa.",
   file_over:"Uno de los archivos supera los 20 MB. Elige uno más pequeño.",
+  need_phone:"Revisa el teléfono: al menos 7 dígitos (o déjalo en blanco).",
   sending:"Enviando…", submit:"Enviar mi historia",
   err_generic:"Algo salió mal al enviar tu historia. Inténtalo de nuevo.",
   err_413:"Ese archivo es demasiado grande (máx. 20 MB).",
@@ -230,6 +236,6 @@ window.KBM_STRINGS={
   err_net:"No pudimos conectar con el servidor. Revisa tu conexión e inténtalo de nuevo."
 };
 </script>
-<script src="/script.js" defer></script>
+<script src="/script.js?v=phone1" defer></script>
 </body>
 </html>

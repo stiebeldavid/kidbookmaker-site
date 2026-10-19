@@ -17,7 +17,7 @@
 <meta name="theme-color" content="#fbf4ea">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="preload" href="/fonts/fraunces.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="/styles.css">
+<link rel="stylesheet" href="/styles.css?v=phone1">
 </head>
 <body>
 <a class="skip" href="#start" data-open>Start your book</a>
@@ -190,9 +190,14 @@
           <label for="author_name">Author name <span class="hint">optional</span></label>
           <input id="author_name" name="author_name" type="text" autocomplete="off" maxlength="80" placeholder="Goes on the cover, e.g. Leah, age 7">
         </div>
-        <div class="field last">
+        <div class="field">
           <label for="email">Your email</label>
           <input id="email" name="email" type="email" autocomplete="email" inputmode="email" required placeholder="you@example.com">
+        </div>
+        <div class="field last">
+          <label for="phone">Phone <span class="hint">optional</span></label>
+          <input id="phone" name="phone" type="tel" autocomplete="tel" inputmode="tel" maxlength="30" placeholder="(555) 123-4567" aria-describedby="phone-help">
+          <p class="micro" id="phone-help">Only so we can reach you if our email lands in spam. We'll never share it.</p>
         </div>
         <div class="hp" aria-hidden="true"><label>Website <input name="website" tabindex="-1" autocomplete="off"></label></div>
       </div>
@@ -211,6 +216,6 @@
     </div>
   </div>
 </div>
-<script src="/script.js" defer></script>
+<script src="/script.js?v=phone1" defer></script>
 </body>
 </html>

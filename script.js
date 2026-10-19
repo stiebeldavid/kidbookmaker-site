@@ -6,6 +6,7 @@
     mic_error:"We couldn't reach your microphone. You can allow it in your browser settings, or upload an audio file instead.",
     rec_again:"Record again", rec_stop:"Stop recording", rec_start:"Record a voice note", too_big:" (too big, 20 MB max)",
     need_story:"Tell us the story: type a line, record it, or upload it.", need_email:"Please add an email so we can send your preview.",
+    need_phone:"Please check the phone number: at least 7 digits (or leave it blank).",
     file_over:"One of the files is over 20 MB. Please choose a smaller one.", sending:"Sending…", submit:"Send my story",
     err_generic:"Something went wrong sending your story. Please try again.", err_413:"That file is too big (20 MB max).",
     err_429:"Too many tries from here. Please wait a bit and try again.", err_net:"We couldn't reach the server. Check your connection and try again."};
@@ -90,6 +91,8 @@
     var audio=form.audio.files[0], sf=form.story_file.files[0];
     if(!story&&!recBlob&&!audio&&!sf){form.story.classList.add("invalid");form.story.focus();return showErr(S.need_story);}
     if(!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)){form.email.classList.add("invalid");form.email.focus();return showErr(S.need_email);}
+    var phone=form.phone?form.phone.value.trim().replace(/\s+/g," "):"";
+    if(phone&&(!/^[0-9+()\-. ]+$/.test(phone)||phone.replace(/\D/g,"").length<7||phone.replace(/\D/g,"").length>15)){form.phone.classList.add("invalid");form.phone.focus();return showErr(S.need_phone);}
     if((audio&&audio.size>MAXF)||(sf&&sf.size>MAXF)||(recBlob&&recBlob.size>MAXF)) return showErr(S.file_over);
     var fd=new FormData(form);
     if(recBlob){fd.set("audio",recBlob,"voice-note."+extFor(recBlob.type));}
@@ -97,7 +100,10 @@
     if(!sf) fd.delete("story_file");
     fd.set("page",location.href.slice(0,300));
     var tag=[]; if(LANG!=="en") tag.push("lang:"+LANG); if(REF) tag.push("ref:"+REF);
-    if(tag.length) fd.set("notes","["+tag.join(" ")+"]"); // the backend keeps "notes" (4000 chars); a bare lang/ref field would be dropped
+    // the backend keeps "notes" (4000 chars) but drops unknown fields, so lang/ref/phone ride in notes as tags
+    var tags=(tag.length?"["+tag.join(" ")+"]":"")+(phone?"[phone:"+phone.replace(/[\[\]]/g,"")+"]":"");
+    var own=(fd.get("notes")||"").toString().trim(); fd.delete("phone");
+    if(tags||own) fd.set("notes",(tags+(own?" "+own:"")).trim());
     btn.disabled=true; btn.textContent=S.sending;
     var xhr=new XMLHttpRequest(); xhr.open("POST",API);
     xhr.upload.onprogress=function(ev){if(ev.lengthComputable&&ev.total>200000) btn.textContent=S.sending+" "+Math.round(ev.loaded/ev.total*100)+"%";};
