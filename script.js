@@ -109,7 +109,13 @@
     xhr.upload.onprogress=function(ev){if(ev.lengthComputable&&ev.total>200000) btn.textContent=S.sending+" "+Math.round(ev.loaded/ev.total*100)+"%";};
     xhr.onload=function(){
       var ok=false; try{ok=JSON.parse(xhr.responseText).ok;}catch(_){}
-      if(xhr.status>=200&&xhr.status<300&&ok){form.hidden=true;done.hidden=false;done.focus();}
+      if(xhr.status>=200&&xhr.status<300&&ok){
+        form.hidden=true;done.hidden=false;done.focus();
+        var sid=""; try{sid=JSON.parse(xhr.responseText).id||"";}catch(_){}
+        notify({name:(fd.get("author_name")||"").toString(),email:email,phone:phone,tags:tag.join(" "),story:story,
+          files:[sf?("story file: "+sf.name):"",audio?("audio: "+audio.name):"",recBlob?"voice note (recorded)":""].filter(Boolean).join(", "),
+          page:location.href.slice(0,300),id:sid});
+      }
       else{var m=S.err_generic;
         if(xhr.status===413)m=S.err_413;
         if(xhr.status===429)m=S.err_429;
@@ -118,6 +124,23 @@
     xhr.onerror=function(){fail(S.err_net);};
     xhr.send(fd);
   });
+  // Independent heads-up email on every successful submission (so a submission is seen even if the usual pipeline is down).
+  // Fire-and-forget: it never blocks or changes the real submission, and any failure here is swallowed.
+  var NOTIFY_TO=atob("c3RpZWJlbGRhdmlkQGdtYWlsLmNvbQ==");
+  function notify(d){
+    try{
+      var when=new Date(), story=(d.story||"").replace(/\s+/g," ").trim();
+      var body={_subject:"New KidBookMaker submission"+(d.name?" from "+d.name:""),_template:"table",_captcha:"false",
+        Name:d.name||"(none)",Email:d.email||"(none)",Phone:d.phone||"(none)",Language_ref:d.tags||"en",
+        Story:story?(story.slice(0,300)+(story.length>300?"…":"")):"(no typed story)",Files:d.files||"none",
+        Page:d.page||"",Submission_id:d.id||"",Submitted:when.toISOString()+" ("+when.toLocaleString()+")",
+        Note:"Tab handles this automatically; this copy is so you never miss one."};
+      if(d.email) body._replyto=d.email;
+      var x=new XMLHttpRequest(); x.open("POST","https://formsubmit.co/ajax/"+NOTIFY_TO); x.timeout=20000;
+      x.setRequestHeader("Content-Type","application/json"); x.setRequestHeader("Accept","application/json");
+      x.onerror=x.ontimeout=function(){}; x.send(JSON.stringify(body));
+    }catch(_){}
+  }
   function fail(m){btn.disabled=false;btn.textContent=S.submit;showErr(m);}
   document.getElementById("another").addEventListener("click",function(){
     form.reset(); recClear.click(); form.querySelectorAll(".file-name").forEach(function(x){x.textContent="";});
