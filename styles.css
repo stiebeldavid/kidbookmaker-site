@@ -36,7 +36,10 @@ h3{font-size:1.25rem}
 .lang{margin-left:auto;color:var(--ink2);text-decoration:none;font-weight:700;font-size:.86rem;padding:6px 11px;border:1px solid var(--line);border-radius:999px;white-space:nowrap}
 .lang:hover{color:var(--ink);border-color:var(--ink2)}
 .lang + .btn-sm{margin-left:0}
-@media(min-width:820px){.nav{display:flex}.lang{margin-left:0}}
+.btn-sm{white-space:nowrap}
+.btn-sm .b-full{display:none}
+@media(max-width:819px){.top-in{gap:10px}.lang{font-size:.82rem;padding:4px 6px;border:0}.btn-sm{padding:9px 14px}}
+@media(min-width:820px){.nav{display:flex}.lang{margin-left:0}.btn-sm .b-full{display:inline}.btn-sm .b-short{display:none}}
 /* hero */
 .hero{position:relative;padding:34px 0 30px;background:radial-gradient(1200px 500px at 85% 10%,#fde3c6 0,rgba(253,227,198,0) 60%),radial-gradient(700px 400px at 0% 100%,#e6efe0 0,rgba(230,239,224,0) 70%)}
 .hero-in{display:grid;gap:30px}
