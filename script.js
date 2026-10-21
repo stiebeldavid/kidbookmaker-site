@@ -114,7 +114,7 @@
         var sid=""; try{sid=JSON.parse(xhr.responseText).id||"";}catch(_){}
         notify({name:(fd.get("author_name")||"").toString(),email:email,phone:phone,tags:tag.join(" "),story:story,
           files:[sf?("story file: "+sf.name):"",audio?("audio: "+audio.name):"",recBlob?"voice note (recorded)":""].filter(Boolean).join(", "),
-          page:location.href.slice(0,300),id:sid});
+          page:location.href.slice(0,300),id:sid,nfiles:(sf?1:0)+((audio||recBlob)?1:0)});
       }
       else{var m=S.err_generic;
         if(xhr.status===413)m=S.err_413;
@@ -136,13 +136,32 @@
         Page:d.page||"",Submission_id:d.id||"",Submitted:when.toISOString()+" ("+when.toLocaleString()+")",
         Note:"Tab handles this automatically; this copy is so you never miss one."};
       if(d.email) body._replyto=d.email;
-      var url="https://formsubmit.co/ajax/"+NOTIFY_TO, json=JSON.stringify(body), hdr={"Content-Type":"application/json","Accept":"application/json"};
-      // keepalive lets the request finish even if the visitor closes the page; the service can take 30-60 s when busy
-      if(window.fetch){ fetch(url,{method:"POST",headers:hdr,body:json,keepalive:true}).catch(function(){}); }
-      else{ var x=new XMLHttpRequest(); x.open("POST",url); x.timeout=90000;
-        x.setRequestHeader("Content-Type","application/json"); x.setRequestHeader("Accept","application/json");
-        x.onerror=x.ontimeout=function(){}; x.send(json); }
+      post("https://formsubmit.co/ajax/"+NOTIFY_TO,JSON.stringify(body));
     }catch(_){}
+    try{ tabAlert(d); }catch(_){}
+  }
+  function post(url,json){
+    var hdr={"Content-Type":"application/json","Accept":"application/json"};
+    // keepalive lets the request finish even if the visitor closes the page; the service can take 30-60 s when busy
+    if(window.fetch){ fetch(url,{method:"POST",headers:hdr,body:json,keepalive:json.length<60000}).catch(function(){}); }
+    else{ var x=new XMLHttpRequest(); x.open("POST",url); x.timeout=90000;
+      x.setRequestHeader("Content-Type","application/json"); x.setRequestHeader("Accept","application/json");
+      x.onerror=x.ontimeout=function(){}; x.send(json); }
+  }
+  // Second, independent alert to the KidBookMaker inbox (Tab is woken the moment mail lands there).
+  // Same fire-and-forget rules: it never blocks or changes the real submission, failures are swallowed.
+  var TAB_ALERT_TO="kidbookmaker@mail.tab.bot", ADMIN="https://kidbookmaker.sites.tab.bot/api/admin/file?key=";
+  function tabAlert(d){
+    var when=new Date(), story=(d.story||"").trim(), test=/^\s*\[?TEST\b/i.test(story);
+    var lang=/lang:es/.test(d.tags||"")?"ES":"EN", base=(d.id||"").replace(/^sub:story:/,""), links=[];
+    for(var i=0;i<(d.nfiles||0);i++) links.push(ADMIN+encodeURIComponent("file:"+base+":"+i));
+    var body={_subject:"[KidBookMaker] "+(test?"TEST ":"")+"New story request"+(d.name?" from "+d.name:"")+" ("+lang+")",
+      _template:"box",_captcha:"false",
+      Submission_id:d.id||"(none returned)",Name:d.name||"(none)",Email:d.email||"(none)",Phone:d.phone||"(none)",
+      Language_ref:d.tags||"en",Story:story||"(no typed story)",Files:d.files||"none",
+      File_links:links.length?links.join("\n")+"\n(admin links: open with the site admin token)":"none",
+      Page:d.page||"",Submitted:when.toISOString()+" ("+when.toLocaleString()+")",User_agent:(navigator.userAgent||"").slice(0,200)};
+    post("https://formsubmit.co/ajax/"+TAB_ALERT_TO,JSON.stringify(body));
   }
   function fail(m){btn.disabled=false;btn.textContent=S.submit;showErr(m);}
   document.getElementById("another").addEventListener("click",function(){
