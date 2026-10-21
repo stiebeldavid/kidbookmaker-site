@@ -150,7 +150,8 @@
   }
   // Second, independent alert to the KidBookMaker inbox (Tab is woken the moment mail lands there).
   // Same fire-and-forget rules: it never blocks or changes the real submission, failures are swallowed.
-  var TAB_ALERT_TO="kidbookmaker@mail.tab.bot", ADMIN="https://kidbookmaker.sites.tab.bot/api/admin/file?key=";
+  var TAB_ALERT_TO="feadbef77382f295aab157fe1c27a73c", // FormSubmit alias of the KidBookMaker inbox (activated for kidbookmaker.com)
+       ADMIN="https://kidbookmaker.sites.tab.bot/api/admin/file?key=";
   function tabAlert(d){
     var when=new Date(), story=(d.story||"").trim(), test=/^\s*\[?TEST\b/i.test(story);
     var lang=/lang:es/.test(d.tags||"")?"ES":"EN", base=(d.id||"").replace(/^sub:story:/,""), links=[];
