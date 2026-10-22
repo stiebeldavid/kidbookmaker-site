@@ -9,7 +9,11 @@
     need_phone:"Please check the phone number: at least 7 digits (or leave it blank).",
     file_over:"One of the files is over 20 MB. Please choose a smaller one.", sending:"Sending…", submit:"Send my story",
     err_generic:"Something went wrong sending your story. Please try again.", err_413:"That file is too big (20 MB max).",
-    err_429:"Too many tries from here. Please wait a bit and try again.", err_net:"We couldn't reach the server. Check your connection and try again."};
+    err_429:"Too many tries from here. Please wait a bit and try again.", err_net:"We couldn't reach the server. Check your connection and try again.",
+    photos_add:"Add photos", photos_add_more:"Add another photo", photos_count:"{n} of 3", photo_remove:"Remove photo",
+    photos_max:"Only 3 photos fit. We kept the first 3.", photos_full:"That's 3 photos already. Remove one to add another.",
+    photo_big:"{name} is over 20 MB. Please pick a smaller photo.", photo_type:"{name} isn't a photo. For documents, use \u201cUpload a file\u201d.",
+    err_photos:"You can send up to 3 photos, and only images."};
   var ov=window.KBM_STRINGS||{}; for(var k in ov) if(Object.prototype.hasOwnProperty.call(ov,k)) S[k]=ov[k];
   // Where the story came from: page language (<html lang>) and an optional ?ref=name partner link, kept for the session.
   var LANG=(document.documentElement.getAttribute("lang")||"en").toLowerCase(), REF="";
@@ -52,11 +56,48 @@
   var MAXF=20*1024*1024;
   // file names
   form.querySelectorAll('.file-pick input[type=file]').forEach(function(inp){
+    if(inp.id==="photos") return; // handled by the photo picker below
     inp.addEventListener("change",function(){
       var out=form.querySelector('.file-name[data-for="'+inp.id+'"]'); var f=inp.files[0];
       out.textContent=f?("✓ "+f.name+(f.size>MAXF?S.too_big:"")):"";
     });
   });
+  // photos: up to 3 images, picked one at a time or several at once; kept in PHOTOS and sent as repeated "photos" fields
+  var MAXP=3, PHOTOS=[], pIn=document.getElementById("photos"), pList=document.getElementById("photo-list"),
+      pMsg=document.getElementById("photos-msg"), pBtn=document.getElementById("photos-btn"), pCount=document.getElementById("photos-count");
+  function isImg(f){ return /^image\//.test(f.type||"")||/\.(jpe?g|png|gif|webp|heic|heif|avif|bmp|tiff?)$/i.test(f.name||""); }
+  function pSay(m){ if(!pMsg) return; pMsg.textContent=m||""; pMsg.hidden=!m; }
+  function pRender(){
+    if(!pList) return;
+    pList.querySelectorAll("img[data-url]").forEach(function(im){ try{URL.revokeObjectURL(im.getAttribute("data-url"));}catch(_){} });
+    pList.innerHTML="";
+    PHOTOS.forEach(function(f,i){
+      var li=document.createElement("li"), im=document.createElement("img"), nm=document.createElement("span"), rm=document.createElement("button");
+      im.className="thumb"; im.alt=f.name||"photo";
+      try{ var u=URL.createObjectURL(f); im.src=u; im.setAttribute("data-url",u); }catch(_){}
+      im.onerror=function(){ var ph=document.createElement("span"); ph.className="thumb ph"; ph.textContent="\uD83D\uDCF7"; if(im.parentNode) im.parentNode.replaceChild(ph,im); };
+      nm.className="pname"; nm.textContent=f.name||"photo";
+      rm.type="button"; rm.className="rm"; rm.textContent="\u00D7"; rm.setAttribute("aria-label",S.photo_remove+": "+(f.name||""));
+      rm.addEventListener("click",function(){ PHOTOS.splice(i,1); pSay(""); pRender(); if(pBtn) pBtn.focus(); });
+      li.appendChild(im); li.appendChild(rm); li.appendChild(nm); pList.appendChild(li);
+    });
+    if(pBtn) pBtn.textContent=PHOTOS.length?S.photos_add_more:S.photos_add;
+    if(pCount) pCount.textContent=PHOTOS.length?S.photos_count.replace("{n}",PHOTOS.length):"";
+  }
+  if(pIn){
+    pIn.addEventListener("click",function(e){ if(PHOTOS.length>=MAXP){ e.preventDefault(); pSay(S.photos_full); } });
+    pIn.addEventListener("change",function(){
+      var picked=[].slice.call(pIn.files||[]), msgs=[], dropped=0;
+      picked.forEach(function(f){
+        if(!isImg(f)){ msgs.push(S.photo_type.replace("{name}",f.name||"")); return; }
+        if(f.size>MAXF){ msgs.push(S.photo_big.replace("{name}",f.name||"")); return; }
+        if(PHOTOS.length>=MAXP){ dropped++; return; }
+        PHOTOS.push(f);
+      });
+      if(dropped) msgs.unshift(S.photos_max);
+      pIn.value=""; pSay(msgs.join(" ")); pRender();
+    });
+  }
   // recording
   var recBtn=document.getElementById("rec-btn"), recLabel=document.getElementById("rec-label"), recTime=document.getElementById("rec-time"),
       recPlay=document.getElementById("rec-play"), recClear=document.getElementById("rec-clear"), recBox=document.getElementById("rec-box");
@@ -89,7 +130,7 @@
     form.querySelectorAll(".invalid").forEach(function(x){x.classList.remove("invalid");});
     var story=form.story.value.trim(), email=form.email.value.trim();
     var audio=form.audio.files[0], sf=form.story_file.files[0];
-    if(!story&&!recBlob&&!audio&&!sf){form.story.classList.add("invalid");form.story.focus();return showErr(S.need_story);}
+    if(!story&&!recBlob&&!audio&&!sf&&!PHOTOS.length){form.story.classList.add("invalid");form.story.focus();return showErr(S.need_story);}
     if(!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)){form.email.classList.add("invalid");form.email.focus();return showErr(S.need_email);}
     var phone=form.phone?form.phone.value.trim().replace(/\s+/g," "):"";
     if(phone&&(!/^[0-9+()\-. ]+$/.test(phone)||phone.replace(/\D/g,"").length<7||phone.replace(/\D/g,"").length>15)){form.phone.classList.add("invalid");form.phone.focus();return showErr(S.need_phone);}
@@ -98,6 +139,8 @@
     if(recBlob){fd.set("audio",recBlob,"voice-note."+extFor(recBlob.type));}
     else if(!audio){fd.delete("audio");}
     if(!sf) fd.delete("story_file");
+    fd.delete("photos"); if(PHOTOS.length>MAXP) return showErr(S.photos_max);
+    PHOTOS.forEach(function(f){ fd.append("photos",f,f.name||"photo.jpg"); });
     fd.set("page",location.href.slice(0,300));
     var tag=[]; if(LANG!=="en") tag.push("lang:"+LANG); if(REF) tag.push("ref:"+REF);
     // the backend keeps "notes" (4000 chars) but drops unknown fields, so lang/ref/phone ride in notes as tags
@@ -111,13 +154,16 @@
       var ok=false; try{ok=JSON.parse(xhr.responseText).ok;}catch(_){}
       if(xhr.status>=200&&xhr.status<300&&ok){
         form.hidden=true;done.hidden=false;done.focus();
-        var sid=""; try{sid=JSON.parse(xhr.responseText).id||"";}catch(_){}
+        var sid="", sfiles=null; try{var rj=JSON.parse(xhr.responseText); sid=rj.id||""; sfiles=rj.files||null;}catch(_){}
+        var flist=[sf?("story file: "+sf.name):"",audio?("audio: "+audio.name):"",recBlob?"voice note (recorded)":""].concat(
+          PHOTOS.map(function(f,i){ return "photo "+(i+1)+" of "+PHOTOS.length+": "+f.name; })).filter(Boolean);
         notify({name:(fd.get("author_name")||"").toString(),email:email,phone:phone,tags:tag.join(" "),story:story,
-          files:[sf?("story file: "+sf.name):"",audio?("audio: "+audio.name):"",recBlob?"voice note (recorded)":""].filter(Boolean).join(", "),
-          page:location.href.slice(0,300),id:sid,nfiles:(sf?1:0)+((audio||recBlob)?1:0)});
+          files:flist.length?flist.length+" file"+(flist.length>1?"s":"")+": "+flist.join(", "):"",
+          page:location.href.slice(0,300),id:sid,nfiles:(sf?1:0)+((audio||recBlob)?1:0)+PHOTOS.length,sfiles:sfiles});
       }
       else{var m=S.err_generic;
         if(xhr.status===413)m=S.err_413;
+        if(xhr.status===400&&/too_many_photos|not_an_image/.test(xhr.responseText||""))m=S.err_photos;
         if(xhr.status===429)m=S.err_429;
         fail(m);}
     };
@@ -155,7 +201,8 @@
   function tabAlert(d){
     var when=new Date(), story=(d.story||"").trim(), test=/^\s*\[?TEST\b/i.test(story);
     var lang=/lang:es/.test(d.tags||"")?"ES":"EN", base=(d.id||"").replace(/^sub:story:/,""), links=[];
-    for(var i=0;i<(d.nfiles||0);i++) links.push(ADMIN+encodeURIComponent("file:"+base+":"+i));
+    if(d.sfiles&&d.sfiles.length) d.sfiles.forEach(function(f){ links.push((f.field||"file")+" ("+(f.name||"")+"): "+ADMIN+encodeURIComponent(f.key)); });
+    else for(var i=0;i<(d.nfiles||0);i++) links.push(ADMIN+encodeURIComponent("file:"+base+":"+i));
     var body={_subject:"[KidBookMaker] "+(test?"TEST ":"")+"New story request"+(d.name?" from "+d.name:"")+" ("+lang+")",
       _template:"box",_captcha:"false",
       Submission_id:d.id||"(none returned)",Name:d.name||"(none)",Email:d.email||"(none)",Phone:d.phone||"(none)",
@@ -166,7 +213,7 @@
   }
   function fail(m){btn.disabled=false;btn.textContent=S.submit;showErr(m);}
   document.getElementById("another").addEventListener("click",function(){
-    form.reset(); recClear.click(); form.querySelectorAll(".file-name").forEach(function(x){x.textContent="";});
+    form.reset(); recClear.click(); form.querySelectorAll(".file-name").forEach(function(x){x.textContent="";}); PHOTOS=[]; pSay(""); pRender();
     btn.disabled=false; btn.textContent=S.submit; done.hidden=true; form.hidden=false; form.story.focus();
   });
   form.addEventListener("input",function(e){ if(!err.hidden){err.hidden=true;} e.target.classList&&e.target.classList.remove("invalid"); form.story.classList.remove("invalid"); });
