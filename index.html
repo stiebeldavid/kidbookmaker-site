@@ -17,7 +17,7 @@
 <meta name="theme-color" content="#fbf4ea">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="preload" href="/fonts/fraunces.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="/styles.css?v=phone1">
+<link rel="stylesheet" href="/styles.css?v=photos1">
 </head>
 <body>
 <a class="skip" href="#start" data-open>Start your book</a>
@@ -185,6 +185,17 @@
           </div>
           <p class="micro">Doc, PDF, or a photo of the page. Up to 20 MB each.</p>
         </div>
+        <div class="field" id="photos-field">
+          <span class="label" id="photos-label">Photos <span class="hint">optional</span></span>
+          <label class="extra file-pick photo-pick">
+            <input type="file" id="photos" name="photos" accept="image/*" multiple aria-labelledby="photos-label" aria-describedby="photos-help photos-msg">
+            <span class="chip-btn" id="photos-btn">Add photos</span>
+            <span class="file-name" id="photos-count" aria-live="polite"></span>
+          </label>
+          <p class="micro" id="photos-help">Add up to 3 photos — e.g. the people to put in the book. Up to 20 MB each.</p>
+          <ul class="photo-list" id="photo-list"></ul>
+          <p class="photo-msg" id="photos-msg" role="alert" hidden></p>
+        </div>
         <div class="field">
           <label for="author_name">Author name <span class="hint">optional</span></label>
           <input id="author_name" name="author_name" type="text" autocomplete="off" maxlength="80" placeholder="Goes on the cover, e.g. Leah, age 7">
@@ -215,6 +226,6 @@
     </div>
   </div>
 </div>
-<script src="/script.js?v=notify4" defer></script>
+<script src="/script.js?v=photos1" defer></script>
 </body>
 </html>
