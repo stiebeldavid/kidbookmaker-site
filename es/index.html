@@ -18,7 +18,7 @@
 <meta name="theme-color" content="#fbf4ea">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="preload" href="/fonts/fraunces.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="/styles.css?v=phone1">
+<link rel="stylesheet" href="/styles.css?v=photos1">
 </head>
 <body>
 <a class="skip" href="#start" data-open>Empieza tu libro</a>
@@ -189,6 +189,17 @@
           </div>
           <p class="micro">Doc, PDF o una foto de la página. Hasta 20 MB cada uno.</p>
         </div>
+        <div class="field" id="photos-field">
+          <span class="label" id="photos-label">Fotos <span class="hint">opcional</span></span>
+          <label class="extra file-pick photo-pick">
+            <input type="file" id="photos" name="photos" accept="image/*" multiple aria-labelledby="photos-label" aria-describedby="photos-help photos-msg">
+            <span class="chip-btn" id="photos-btn">Añadir fotos</span>
+            <span class="file-name" id="photos-count" aria-live="polite"></span>
+          </label>
+          <p class="micro" id="photos-help">Añade hasta 3 fotos — p. ej. de las personas que saldrán en el libro. Hasta 20 MB cada una.</p>
+          <ul class="photo-list" id="photo-list"></ul>
+          <p class="photo-msg" id="photos-msg" role="alert" hidden></p>
+        </div>
         <div class="field">
           <label for="author_name">Nombre del autor <span class="hint">opcional</span></label>
           <input id="author_name" name="author_name" type="text" autocomplete="off" maxlength="80" placeholder="Va en la portada, p. ej. Lucía, 7 años">
@@ -233,9 +244,15 @@ window.KBM_STRINGS={
   err_generic:"Algo salió mal al enviar tu historia. Inténtalo de nuevo.",
   err_413:"Ese archivo es demasiado grande (máx. 20 MB).",
   err_429:"Demasiados intentos desde aquí. Espera un poco e inténtalo de nuevo.",
-  err_net:"No pudimos conectar con el servidor. Revisa tu conexión e inténtalo de nuevo."
+  err_net:"No pudimos conectar con el servidor. Revisa tu conexión e inténtalo de nuevo.",
+  photos_add:"Añadir fotos", photos_add_more:"Añadir otra foto", photos_count:"{n} de 3", photo_remove:"Quitar foto",
+  photos_max:"Solo caben 3 fotos. Nos quedamos con las 3 primeras.",
+  photos_full:"Ya hay 3 fotos. Quita una para añadir otra.",
+  photo_big:"{name} supera los 20 MB. Elige una foto más pequeña.",
+  photo_type:"{name} no es una foto. Para documentos usa «Subir un archivo».",
+  err_photos:"Solo se pueden enviar 3 fotos, y solo imágenes."
 };
 </script>
-<script src="/script.js?v=notify4" defer></script>
+<script src="/script.js?v=photos1" defer></script>
 </body>
 </html>
