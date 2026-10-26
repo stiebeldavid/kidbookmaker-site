@@ -2,9 +2,9 @@
 (function () {
   "use strict";
 
-  // ===== STRIPE PAYMENT LINK: paste the link from Stripe here (one line). =====
+  // ===== ORDER LINK (Amazon since Oct 26, 2026; was Stripe). One line. =====
   // Empty = the button stays disabled and reads "Ordering opens shortly".
-  var STRIPE_PAYMENT_LINK = "https://buy.stripe.com/00w9AM7695iG8g09l3bZe00";
+  var STRIPE_PAYMENT_LINK = "https://www.amazon.com/dp/B0HPB3PV5M";
   // ===========================================================================
 
   var btn = document.getElementById("order-btn");
