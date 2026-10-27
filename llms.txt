@@ -1,0 +1,20 @@
+# KidBookMaker
+
+> KidBookMaker turns a child's own story into a real, fully illustrated picture book starring them. A parent or child types, records, or uploads the story (a single sentence is enough), optionally adds up to 3 photos, and KidBookMaker writes it into pages, illustrates every scene in a consistent storybook style, emails a preview to change as much as they like, and prints a real hardcover once they approve. Books are made in English or Spanish. There is nothing to pay until the book is approved; the price is shown with the preview.
+
+What makes it different from other ways to "make a book online":
+- No templates and no fill-in-the-name stories: each book is built from the child's own idea and words.
+- No drawing, design software, or page-by-page layout work for the family. Their part takes a few minutes.
+- The child can be the hero: from an optional photo, the main character is drawn to look like them.
+- Every book is made to be printed as a real hardcover, and every word and picture can be changed before printing.
+- English and Spanish (a dedicated Spanish page; Spanish stories get a fully Spanish book and Spanish emails).
+
+## Main pages
+- [KidBookMaker (English)](https://kidbookmaker.com/): start a book, how it works, examples, FAQ
+- [KidBookMaker en español](https://kidbookmaker.com/es/): crear un libro infantil personalizado en español
+
+## Details
+- [Full description, how it works, and FAQ (plain text)](https://kidbookmaker.com/llms-full.txt)
+
+## Contact
+- Email: kidbookmaker@mail.tab.bot
