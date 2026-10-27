@@ -1,19 +1,24 @@
 # KidBookMaker: full description
 
-> KidBookMaker turns a child's own story into a real, fully illustrated picture book starring them. Bring your book to life in minutes: tell the story, and KidBookMaker illustrates every page, emails a preview to perfect, and prints a real hardcover you'll keep forever.
+> KidBookMaker turns your story into a real, fully illustrated picture book. It can star your child, your whole family, or a friend (as a gift), or simply bring a story in your head to life. Bring your book to life in minutes: tell the story, and KidBookMaker illustrates every page, emails a preview (usually the same day) to perfect, and prints a real hardcover you'll keep forever.
 
 Website: https://kidbookmaker.com/ (English) and https://kidbookmaker.com/es/ (Spanish)
+Guides: https://kidbookmaker.com/personalized-childrens-book/ and https://kidbookmaker.com/libro-infantil-personalizado/ (en español)
 Contact: kidbookmaker@mail.tab.bot
 
 ## What it is
-KidBookMaker makes personalized children's picture books from the child's own story. It is not a template where only the name changes, and it is not a do-it-yourself book builder: the family does not draw, design, or lay out pages. They send the story (typed, recorded as a voice note, or uploaded as a file) and, optionally, up to 3 photos, for example the child or the people they would like in the book. KidBookMaker writes the story into pages, illustrates every scene with care in a consistent storybook style, keeps the child's words and ideas at the heart of it, and lays it out as a real picture book.
+KidBookMaker makes personalized illustrated picture books from the family's own story: a child's idea, a story starring the whole family or a friend, or any tale someone has in their head. It is not a template where only the name changes, and it is not a do-it-yourself book builder: the family does not draw, design, or lay out pages. They send the story (typed, recorded as a voice note, or uploaded as a file) and, optionally, up to 3 photos, for example the child or the people they would like in the book. KidBookMaker writes the story into pages, illustrates every scene with care in a consistent storybook style, keeps the storyteller's words and ideas at the heart of it, and lays it out as a real picture book.
 
 ## Who it is for
-Parents, grandparents, and families who want a one-of-a-kind book made from a child's imagination: a bedtime story the child invented, a story about a pet, a new sibling, a move, a favorite sport, or any adventure where the child is the hero. It makes a meaningful gift.
+Parents, grandparents, friends, and families who want a one-of-a-kind illustrated book:
+- Starring your child: add a photo and the hero is drawn to look like them, in a story they invented or one about them. https://kidbookmaker.com/book-starring-your-child/
+- Starring your whole family: siblings, parents, grandparents, even the pet, in one book. https://kidbookmaker.com/family-storybook/
+- As a gift: a book starring a friend, a grandchild, or a new baby. https://kidbookmaker.com/personalized-gift-book/
+- Any story in your head: a bedtime tale, a made-up world, a family story told for years; no real people needed. https://kidbookmaker.com/custom-storybook/
 
 ## How it works
 1. Tell us the story. Type it, record it, or upload it, plus up to 3 photos if you like. A one-liner is plenty; a whole notebook is great too. Only the story and an email address are needed.
-2. We illustrate it. We write it into pages, paint every scene, and email you a preview. Tweak anything: words, pictures, colors, even what the hero looks like.
+2. We illustrate it. We write it into pages, paint every scene, and email you a preview, usually the same day. Tweak anything: words, pictures, colors, even what the hero looks like.
 3. Hold the real book. Approve it and we print a real hardcover. Pricing is shown with your preview.
 
 ## Examples from the site
@@ -22,16 +27,16 @@ Parents, grandparents, and families who want a one-of-a-kind book made from a ch
 
 ## Frequently asked questions
 ### Who makes the book?
-Your child writes the story. We turn it into pages, illustrate every scene, and lay it out as a real picture book, keeping their words and ideas at the heart of it.
+You bring the story: your child's idea, a tale starring your family or a friend, or one you've carried in your head for years. We turn it into pages, illustrate every scene, and lay it out as a real picture book, keeping your words and ideas at the heart of it.
 
 ### Is it really personalized?
-Yes, from the first page to the last. It isn't a template with a name dropped in: the book is built from your child's own story, and if you add a photo, the hero in the pictures is drawn to look like them.
+Yes, from the first page to the last. It isn't a template with a name dropped in: the book is built from your own story, and if you add photos, the people in the pictures are drawn to look like them, whether that's your child, your whole family or a friend.
 
 ### What photos do I need?
 None are required. You can add up to 3 photos (up to 20 MB each), for example the child or the people you'd like in the book. Clear, well-lit photos where faces are easy to see work best.
 
 ### How long does it take?
-Your part takes a few minutes: type, record, or upload the story and press send. No drawing, no design software, no templates. Your first preview usually arrives within a few days. Printing and shipping come after you approve.
+Your part takes a few minutes: type, record, or upload the story and press send. No drawing, no design software, no templates. Your first preview usually arrives the same day. Printing and shipping come after you approve.
 
 ### Can I print it?
 Yes. Every book is made to be printed. Once you approve the preview, we print a real hardcover.
@@ -46,14 +51,14 @@ Books are priced per copy, and you'll see the price with your preview. There's n
 Yes. Ask for as many tweaks as you want before printing: words, pictures, colors, even what the hero looks like. Just reply to our email.
 
 ## En español
-KidBookMaker también hace libros infantiles personalizados totalmente en español: el texto, la portada, todo, y te escribimos en español. Cuéntanos la historia en español en https://kidbookmaker.com/es/ (escríbela, grábala o súbela, con hasta 3 fotos opcionales). Recibes una vista previa por correo para cambiar lo que quieras y, cuando la apruebas, imprimimos un libro de tapa dura de verdad. No pagas nada hasta que apruebes el libro; el precio se muestra junto con tu vista previa.
+KidBookMaker también hace libros infantiles personalizados totalmente en español (con tu hijo, toda tu familia o un amigo como protagonista, o cualquier historia que imagines; más en https://kidbookmaker.com/libro-infantil-personalizado/): el texto, la portada, todo, y te escribimos en español. Cuéntanos la historia en español en https://kidbookmaker.com/es/ (escríbela, grábala o súbela, con hasta 3 fotos opcionales). Recibes una vista previa por correo (normalmente el mismo día) para cambiar lo que quieras y, cuando la apruebas, imprimimos un libro de tapa dura de verdad. No pagas nada hasta que apruebes el libro; el precio se muestra junto con tu vista previa.
 
 ### Preguntas frecuentes
 ### ¿Quién hace el libro?
-Tu hijo escribe la historia. Nosotros la convertimos en páginas, ilustramos cada escena y la maquetamos como un libro ilustrado de verdad, manteniendo sus palabras y sus ideas en el centro.
+Tú pones la historia: la idea de tu hijo, un cuento con tu familia o un amigo como protagonista, o una historia que llevas años imaginando. Nosotros la convertimos en páginas, ilustramos cada escena y la maquetamos como un libro ilustrado de verdad, manteniendo tus palabras y tus ideas en el centro.
 
 ### ¿De verdad es personalizado?
-Sí, de la primera a la última página. No es una plantilla a la que solo le cambiamos el nombre: el libro nace de la historia de tu hijo y, si agregas una foto, dibujamos al protagonista para que se parezca a él o a ella.
+Sí, de la primera a la última página. No es una plantilla a la que solo le cambiamos el nombre: el libro nace de tu propia historia y, si agregas fotos, dibujamos a los personajes para que se parezcan a esas personas, ya sea tu hijo, toda tu familia o un amigo.
 
 ### ¿Qué fotos necesito?
 Ninguna es obligatoria. Puedes agregar hasta 3 fotos (de hasta 20 MB cada una), por ejemplo del niño o de las personas que quieras en el libro. Funcionan mejor las fotos claras y con buena luz, donde se vean bien las caras.
@@ -62,7 +67,7 @@ Ninguna es obligatoria. Puedes agregar hasta 3 fotos (de hasta 20 MB cada una), 
 ¡Claro! Cuéntanos la historia en español y haremos todo el libro en español: el texto, la portada, todo. Y te escribiremos en español.
 
 ### ¿Cuánto tarda?
-Tu parte toma unos minutos: escribe, graba o sube la historia y envíala. Sin dibujar, sin programas de diseño, sin plantillas. La primera vista previa suele llegar en unos días. La impresión y el envío vienen después de que apruebes el libro.
+Tu parte toma unos minutos: escribe, graba o sube la historia y envíala. Sin dibujar, sin programas de diseño, sin plantillas. La primera vista previa suele llegar el mismo día. La impresión y el envío vienen después de que apruebes el libro.
 
 ### ¿Puedo imprimirlo?
 Sí. Cada libro está hecho para imprimirse. Cuando apruebas la vista previa, imprimimos un libro de tapa dura de verdad.
@@ -72,3 +77,6 @@ Los libros tienen un precio por ejemplar, y lo verás junto con tu vista previa.
 
 ### ¿Puedo cambiar cosas?
 Sí. Pide todos los cambios que quieras antes de imprimir: palabras, ilustraciones, colores, incluso cómo se ve el protagonista. Solo responde a nuestro correo.
+
+## Also from KidBookMaker
+- Secret Mitzvah Ninjas (https://kidbookmaker.com/secret-mitzvah-ninjas/): a rhyming, shout-along picture book about three masked helpers who sneak through town doing mitzvahs. Story by Erin and David Stiebel.

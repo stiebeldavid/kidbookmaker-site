@@ -191,3 +191,25 @@ html.modal-open,html.modal-open body{overflow:hidden}
 .photo-list .rm{position:absolute;top:-8px;right:-8px;width:30px;height:30px;border-radius:50%;border:1px solid var(--line);background:var(--card);color:var(--ink);font:inherit;font-size:1.1rem;font-weight:800;line-height:1;cursor:pointer;box-shadow:0 2px 6px rgba(0,0,0,.15);padding:0}
 .photo-list .rm:focus-visible{outline:3px solid var(--sky);outline-offset:2px}
 .photo-msg{background:#fdecea;color:#8e2a1e;border-radius:12px;padding:10px 12px;font-weight:700;font-size:.9rem;margin:10px 0 0}
+
+/* phase 2: possibilities line, ideas cards, landing pages */
+.possible{font-family:"Fraunces",Georgia,serif;font-size:1.18rem;line-height:1.4;color:var(--ink);margin:0 0 14px;max-width:32em}
+.possible a{color:var(--coral-d);text-decoration:underline;text-decoration-color:rgba(201,88,64,.35);text-underline-offset:3px}
+.ideas{background:var(--card);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.idea-grid{list-style:none;margin:0;padding:0;display:grid;gap:14px}
+.idea{display:block;height:100%;background:var(--paper);border:1px solid var(--line);border-radius:var(--r);padding:20px 22px;text-decoration:none;color:var(--ink);transition:transform .15s,border-color .15s}
+.idea:hover{transform:translateY(-2px);border-color:var(--coral)}
+.idea-k{display:block;font-family:"Fraunces",Georgia,serif;font-weight:700;font-size:1.2rem;margin-bottom:4px}
+.idea-k::after{content:" →";color:var(--coral)}
+.idea-d{display:block;color:var(--ink2);font-size:.98rem}
+@media(min-width:640px){.idea-grid{grid-template-columns:1fr 1fr}}
+@media(min-width:1000px){.idea-grid{grid-template-columns:repeat(4,1fr)}}
+.lp-body .prose p{font-size:1.08rem;color:var(--ink2);margin:0 0 16px}
+.lp-body .prose strong{color:var(--ink)}
+.lp-list{list-style:none;margin:8px 0 0;padding:0;display:grid;gap:12px}
+.lp-list li{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:16px 18px 16px 50px;position:relative;color:var(--ink2)}
+.lp-list li::before{content:"✦";position:absolute;left:18px;top:15px;color:var(--honey);font-size:1.1rem}
+.lp-list li b{color:var(--ink)}
+.lp-anchor{scroll-margin-top:90px}
+.crumbs{font-size:.86rem;color:var(--ink2);margin:0 0 10px}
+.crumbs a{color:var(--ink2)}

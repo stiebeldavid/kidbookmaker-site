@@ -14,4 +14,38 @@
     <xhtml:link rel="alternate" hreflang="es" href="https://kidbookmaker.com/es/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://kidbookmaker.com/"/>
   </url>
+  <url>
+    <loc>https://kidbookmaker.com/personalized-childrens-book/</loc>
+    <lastmod>2026-10-27</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://kidbookmaker.com/personalized-childrens-book/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://kidbookmaker.com/libro-infantil-personalizado/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://kidbookmaker.com/personalized-childrens-book/"/>
+  </url>
+  <url>
+    <loc>https://kidbookmaker.com/libro-infantil-personalizado/</loc>
+    <lastmod>2026-10-27</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://kidbookmaker.com/personalized-childrens-book/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://kidbookmaker.com/libro-infantil-personalizado/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://kidbookmaker.com/personalized-childrens-book/"/>
+  </url>
+  <url>
+    <loc>https://kidbookmaker.com/book-starring-your-child/</loc>
+    <lastmod>2026-10-27</lastmod>
+  </url>
+  <url>
+    <loc>https://kidbookmaker.com/family-storybook/</loc>
+    <lastmod>2026-10-27</lastmod>
+  </url>
+  <url>
+    <loc>https://kidbookmaker.com/personalized-gift-book/</loc>
+    <lastmod>2026-10-27</lastmod>
+  </url>
+  <url>
+    <loc>https://kidbookmaker.com/custom-storybook/</loc>
+    <lastmod>2026-10-27</lastmod>
+  </url>
+  <url>
+    <loc>https://kidbookmaker.com/secret-mitzvah-ninjas/</loc>
+    <lastmod>2026-10-27</lastmod>
+  </url>
 </urlset>
